@@ -553,17 +553,20 @@ td:first-child {
 
 .material-master-table th:nth-child(2),
 .material-master-table td:nth-child(2) {
+  width: 220px;
   min-width: 220px;
   text-align: left;
 }
 
 .dashboard-plan-panel th:nth-child(1),
 .dashboard-plan-panel td:nth-child(1) {
+  width: 220px;
   min-width: 220px;
 }
 
 .spec-table th:nth-child(2),
 .spec-table td:nth-child(2) {
+  width: 260px;
   min-width: 260px;
 }
 
@@ -1195,12 +1198,9 @@ td {
 
 .order-history-table th:nth-child(2),
 .order-history-table td:nth-child(2) {
+  width: 180px;
   min-width: 180px;
   text-align: left;
-}
-
-.order-history-table th:nth-child(2) {
-  width: 180px;
 }
 
 .order-history-table th:nth-child(3) {
