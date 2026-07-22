@@ -1,2459 +1,57 @@
+const defaultMaterialLocations = {
+  EAV65015705: "L1, L2, L3",
+  EAH61953801: "D2, D3, D4, D5",
+  EDTY0008601: "D1",
+  "2IP4310AATC-RG": "U1, U2, U3",
+  SN74HCS21PWR: "IC1",
+  "0ISTLKE002A": "IC2",
+  EBK61451301: "Q1, Q2, Q3",
+  "0RH5101C622": "R4, R9, R14",
+  "0RH1002C622": "R5, R10, R15",
+  "0RJ2001D477": "R1, R6, R11",
+  EBC64896001: "R2, R3, R7, R8, R12, R13",
+  EAE36617601: "C1, C2",
+};
+
 const materials = [
-  {
-    "code": "DPMA-D208W0",
-    "name": "DA-POGO-REV1.0 2024.06.20 / 1.0T / White / OSP / 3Array /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 122.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DWS3-150SW0",
-    "name": "SMD 12505WS-15 / 1.25mm /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.04,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 130.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DSG0-018SC1",
-    "name": "POGO_PIN / K-PF-0103-18254CR / HEXIE / 2.54mm / 18PIN",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.02,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 1403.36,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DWS3-030RW1",
-    "name": "SMD 12505WR-03 / 1.25mm /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.89,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 48.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DPMA-D207W0",
-    "name": "DA-MAIN-REV1.0 2024.06.20 / 1.0T / White / OSP / 3Array / MAIN / POGO/ SD / USB_C  통합 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 765.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC1-104K30",
-    "name": "1005 104K/25V / ANY / CL05B104KA /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 28.25,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 6.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC2-475K40",
-    "name": "1608 475KO / 16V /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 5.62,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 7.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC3-221J80",
-    "name": "2012 221J / 500V /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.31,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 16.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC3-473K90",
-    "name": "2012 473K / 250V /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.14,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 8.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC3-226M30",
-    "name": "2012 226MAQNNNE/25V /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 14.69,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 36.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC1-105K30",
-    "name": "1005 105K / X5R / 25V / ANY / CL05A105KA K급 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 11.6,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 3.7,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC1-103K10",
-    "name": "1005 103K/50V /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 7.72,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.65,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC4-472K70",
-    "name": "3216 472K / 100V /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.2,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 11.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC5-823K70",
-    "name": "3216 823K / 100V /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC2-104M10",
-    "name": "1608 104M(K)/50V-WALSIN 1608 104M(K)/Y5V/50V-삼성 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 8.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCE7-107830",
-    "name": "100uF 25V(6.3*8) /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.09,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 54.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC1-120J10",
-    "name": "1005 120J / 50V /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.26,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 1.1,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCTB-476K20",
-    "name": "47uF / K / 10V / B-SIZE / ANY / 293D476X9010B2TE3/ TAJB476K010J",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.21,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 88.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC1-330J10",
-    "name": "1005 330J / 50V /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.09,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 1.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC1-102K10",
-    "name": "1005 102K / X7R / 50V /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.11,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.8,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC3-106K40",
-    "name": "2012 106K/X5R/16V - 10UF, 16V, K / 25v /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 6.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCTP-335M40",
-    "name": "3.3uF / M / 16V / P-SIZE / ANY / TMCP1C335MTRF",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.26,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 60.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCTP-106M60",
-    "name": "10uF / M / 6.3V / P-SIZE / ANY / TMCP0J106MTRF",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.35,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 50.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC2-106M30",
-    "name": "1608 106M / X5R / 25V /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 4.01,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 16.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC1-473K10",
-    "name": "1005 473K/50V / GRM155R7H473KE14D",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.34,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 1.7,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC1-090C10",
-    "name": "1005 090C/COG/50V / GRM155R 9R0 9PF",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.0,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 1.1,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC1-820J10",
-    "name": "1005 820J / 50V /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.18,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 1.07,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC1-821K10",
-    "name": "1005 821K / 50V / 820pf",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.0,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 1.6,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DDR7-S12001",
-    "name": "KD / SMA SMD/ SS12 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 22.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DDR5-SS1200",
-    "name": "SCHOTTKY-DIODE / SS120 / DO-214AC /  /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.17,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 21.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DBC4-601M60",
-    "name": "BEAD / EHT-3216-601EN /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.13,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 13.6,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DBC2-601M60",
-    "name": "EMW / EHT-1608-601PN 1A (21.5.18)/ EBT-1608-601PN (X) / HH1M1608_601J(X) /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 3.56,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 6.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DWS3-100RW0",
-    "name": "SMD 12505WR-10 / 1.25mm /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.03,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 88.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DWS3-150RW0",
-    "name": "SMD 12505WR-15 / 1.25mm /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.03,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 130.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DWS3-030SW0",
-    "name": "SMD 12505WS-03 1.25mm /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.99,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 48.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DWS9-024SA0",
-    "name": "SMD / OK-14F024-04 / OCN / 0.4mm /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.2,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 245.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DWS4-020SW0",
-    "name": "SMD B2B-PH-SM4-TB / 2P / / 2.0 / 2A",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.04,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 56.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DWS3-020SW0",
-    "name": "SMD 12505WS-02 1.25mm /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 3.3,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 45.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DL3G-1608W1",
-    "name": "WEJT61GC-S5/ 1608 GREEN LED /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 25.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DL2R-1608W1",
-    "name": "WEJT61RC-871 / 1608 RED LED /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 17.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DGC7-0270M0",
-    "name": "27uH / HSPN6045-270MC     /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 118.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DGC8-0151M0",
-    "name": "150uH / HSPN5040-151MC /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 113.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DGC6-4R70M0",
-    "name": "4.7uH / MPIP0420 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 117.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DGC0-0010M1",
-    "name": "1uH / MPIA252010 / Microgate / MPIA252010-1R0-LF",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.09,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 65.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DGC5-03R3M0",
-    "name": "3.3uH / SC4532D / 3.3uH / APC04A32M3R3",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 63.31,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DFR0-230510",
-    "name": "DMG2305UX-7 / DIODES / MOSFET / SOT23 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 53.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DTR4-102S11",
-    "name": "KRC102S-RTK/P-KEC SOT-23 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 9.52,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 15.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DTR4-105S11",
-    "name": "KRC105S-RTK/P-KEC SOT-23 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 20.1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 15.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DTR2-534513",
-    "name": "2SC5343SY-AUK SOT-23 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 4.5,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 15.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DFR0-107210",
-    "name": "N-Channel FET / ATM1072N-KCR / IAT / SOT23 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 50.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DTR3-105S11",
-    "name": "KRA105S-RTK/P-KEC SOT-23 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.17,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 14.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCPS-150000",
-    "name": "SMD FSMD150 / 8V 100mA - FUSETEC /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.02,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 58.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-010420",
-    "name": "1005 F 100K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 3.51,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-010310",
-    "name": "1005 J 10K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 18.77,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-047310",
-    "name": "1005 J 47K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 11.85,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-010210",
-    "name": "1005 J 1K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 8.5,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.55,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC3-000011",
-    "name": "2012 J 0R /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 3.31,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 1.2,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC3-056220",
-    "name": "2012 F 5.6K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 2.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-018420",
-    "name": "1005 F 180K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.19,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-039210",
-    "name": "1005 J 3.9K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 3.03,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-010410",
-    "name": "1005 J 100K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 10.03,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-024420",
-    "name": "1005 F 240K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.7,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC3-068110",
-    "name": "2012 J 680R /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.5,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 1.2,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-039110",
-    "name": "1005 J 390R /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.64,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC3-010210",
-    "name": "2012 J 1K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 1.7,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-020420",
-    "name": "1005 F 200K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.65,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.7,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-047210",
-    "name": "1005 J 4.7K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 6.51,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-010510",
-    "name": "1005 J 1M /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-024320",
-    "name": "1005 F 24K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-013410",
-    "name": "1005 J 130K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-047320",
-    "name": "1005 F 47K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.7,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-010110",
-    "name": "1005 J 100R /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 7.0,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-091320",
-    "name": "1005 F 91K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-062210",
-    "name": "1005 J 6.2K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.0,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-015310",
-    "name": "1005 J 15K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.0,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-056210",
-    "name": "1005 J 5.6K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.16,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-022310",
-    "name": "1005 J 22K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 3.77,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-018320",
-    "name": "1005 F 18K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.7,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-047010",
-    "name": "1005 J 47R /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.0,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-022210",
-    "name": "1005 J 2.2K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 5.94,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-047110",
-    "name": "1005 J 470R /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 7.0,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-000010",
-    "name": "1005 J 0R /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 18.87,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-068420",
-    "name": "1005 F 680K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.0,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-019220",
-    "name": "1005 F 1.91K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-012220",
-    "name": "1005 F 1.2K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-036420",
-    "name": "1005 F 360K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.19,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-049320",
-    "name": "1005 F 49.9K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.57,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.7,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-011420",
-    "name": "1005 F 110K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 3.0,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-011320",
-    "name": "1005 F 11K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.0,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-015420",
-    "name": "1005 F 150K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-015320",
-    "name": "1005 F 15K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-047420",
-    "name": "1005 F 470K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-822120",
-    "name": "1005 F 8.2K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-024110",
-    "name": "1005 J 240R /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.01,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-015110",
-    "name": "1005 J 150R /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 6.23,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-020210",
-    "name": "1005 J 2K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DIF0-GD32L0",
-    "name": "MCU / GD32F303VBT6-LQFP100P / GigaDevice / LQFP100 / 라이팅 미포함 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 2362.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DIR0-614500",
-    "name": "Step Up IC / AT6145 / IAT / SOT-26 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.15,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 260.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DIZ0-ET98A0",
-    "name": "Voltage Detectors / ET9818 / ETEK / SOT23 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.12,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 54.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DIA0-282256",
-    "name": "TDA2822D-ST SO 8 15V 1A (ST, UTC 공동사용) /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.13,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 142.02,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DIZ0-2118Q0",
-    "name": "Analog Switch / RS2118 / RUNIC / QFN /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.2,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 170.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DIZ0-434400",
-    "name": "CS4344 / CIRRUS LOGIC / 10LD TSSOP / D/A CONVERTER / BODTKEY SONIC / 대치품 --> CJC4344H",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 539.55,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DIZ0-2588V5",
-    "name": "Charger IC / BQ25886 / TI / VQFN /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 1807.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DIR0-725600",
-    "name": "Step Down IC / AT7256 / IAT / SOT-26 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 203.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DIR0-6108V5",
-    "name": "Step Up IC / TPS61089 / TI / VQFN /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.14,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 1459.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DIR0-3682S0",
-    "name": "Step Down IC / AX3682 / AXELITE / SOT23-6 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DIZ0-290354",
-    "name": "LM2903DMR2G MICRO SOP8 /ONSEMI /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.12,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 195.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DXSM-032M20",
-    "name": "X-TAL / 32Mhz, 9pF / 2025 SIZE / 32.000MH",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 97.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DDZB-06V800",
-    "name": "ZENER_DIODE / BZT52C6V8 / SOD-123 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.16,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 14.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DDZB-002000",
-    "name": "ZENER_DIODE / BZT52C20 / SOD-123 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.97,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 14.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DPSU-D206W0",
-    "name": "DA-SD-REV1.0 2024.06.20 / 1.0T / White / OSP / 3Array /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 78.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DWSD-090RA0",
-    "name": "SDCARD_SOKET / MR01A-01224 / MR01A-01245 / ATOM / 1.1mm /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 179.79,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-033010",
-    "name": "1005 J 33R /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DPSU-D205W0",
-    "name": "DA-USB_C-REV1.0 2024.06.20 / 1.0T / White / OSP / 3Array /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 82.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DWS2-060RA0",
-    "name": "SMD/USB-C/GUSB-CH001 / 1006-FGB012/TM2 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.88,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 100.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC1-220K30",
-    "name": "22pF 1005 25V K / 50v / 220j",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.43,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 1.1,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DWS3-020RW0",
-    "name": "SMD 12505WR-연호 1.25mm / 2P /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.92,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 36.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-051210",
-    "name": "1005 J 5.1K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 3.61,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DSG0-03FS00",
-    "name": "DS2_USB_C / 3PIN POGOPIN / FEMAIL / 3783AJ / 8mm pitch / H6.8 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 473.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DIZ0-406600",
-    "name": "SGMICRO / SGM40661 / WLCSP /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 215.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DPSU-D204W0",
-    "name": "DA-RF-REV1.0 2024.03.21 / 1.0T / White / ENIG / 4Array  RF / EP / US_SUB  통합 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.16,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 267.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DL2R-283590",
-    "name": "RF-OURI35TS-EK-J / 2835 RED LED /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 4.92,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 60.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DPSU-D203W0",
-    "name": "DA-EP-REV1.0 2024.03.21 / 1.0T / White / ENIG / 4Array /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 267.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DL1W-352800",
-    "name": "LED(WHITE)/3528/RF-WNMA30DA  / WNMA30DS-EE-F",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 5.97,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 33.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-030310",
-    "name": "1005 J 30K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.95,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-082010",
-    "name": "1005 J 82R /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 8.35,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DPSU-D202W0",
-    "name": "DA-US_HD-REV1.0 2024.05.10 / 1.0T / White / OSP / 8Array   통합 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.03,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 476.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC4-332KB0",
-    "name": "3216 332K / 630V /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.21,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 13.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DDR7-0M4000",
-    "name": "KD / SMA SMD/ M4 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.2,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 10.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DWS3-120SW0",
-    "name": "SMD 12505WS-12 1.25mm /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.17,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 115.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DSG0-008SC1",
-    "name": "POGO_PIN / K-PF-0103-08254CR / HEXIE / 2.54mm / 8pin",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.06,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 738.53,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DYRE-HFD400",
-    "name": "HONGFA HFD4/3-S /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 880.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DFR0-950N70",
-    "name": "NPN_FET / TSM950N10CW / Taiwan Semiconductor / SOT-223 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.04,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 190.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-001010",
-    "name": "1005 J 1R /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.83,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DIZ0-RS1GF0",
-    "name": "Schmitt-Trigger Inverter / RS1G14 / RUNIC / SOT23-5 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.17,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 55.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DPSU-D201W0",
-    "name": "DA-US_SUB-REV1.0 2024.03.21 / 1.0T / White / ENIG / 4Array /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 170.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DWS3-120RW0",
-    "name": "SMD 12505WR-12 1.25mm /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.25,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 105.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DPMA-D209W0+B145",
-    "name": "DA-CRADLE-MAIN-REV1.0 2024.06.20 / 1.2T / White / OSP / 8Array / MAIN / UVC / POGO / 통합 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCN4-476A30",
-    "name": "47uF / 16V (5.0*5.3) /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 27.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC2-475M30",
-    "name": "1608 475M / X5R / 25V , 1608 475K / X5R / 25V /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.0,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 12.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DDR5-SS3400",
-    "name": "DO-214AC / SMD / SS34A / XBS104S13R-G /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 44.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DWS3-050SW0",
-    "name": "SMD 12505WS-05 1.25mm /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 67.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DGP5-04R7N0",
-    "name": "HTOP4532-4R7 // 광성/KOEL 4.7uH/HTOP4532  KOU4532-4R7M /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 85.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC2-825320",
-    "name": "1608 F 8.2M /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.9,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-027410",
-    "name": "1005 J 270K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.72,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-022410",
-    "name": "1005 J 220K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.4,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-043410",
-    "name": "1005 J 430K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.36,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.4,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC2-000010",
-    "name": "1608 J 0R /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 3.29,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.67,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DIZ0-N5550I",
-    "name": "CMOS TIMER / ILC555 / IKSEMICON / SOIC /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 110.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DIZ0-1611SZ",
-    "name": "ETA1611S2G / SOT23-6 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 180.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DDZ3-C24V00",
-    "name": "ZMM55C24 - KD /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 15.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DDZ3-C6V200",
-    "name": "KD / ZMM55C6V2 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.78,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 15.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DPSU-D210W0",
-    "name": "DA-CRADLE-UVC-REV1.0 2024.06.20 / 1.2T / White / OSP / 8Array /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 60.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DL4B-3535U0",
-    "name": "LTPL-G35UV275GS /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 1010.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DL2B-1204S1",
-    "name": "WEJT92RBC-D62 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.73,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 70.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DWS3-050RW1",
-    "name": "12505WR-05 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.07,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 58.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DSG0-002SC0",
-    "name": "DS2_CRADLE / 2PIN POGOPIN / PF-0105-02254CR / 2.54mm / H6.5 / 2PIN",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 236.3,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DIZ0-NCR4A0",
-    "name": "20mA LED driver / NCR402T / NEXPERIA / SOT23 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.02,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 110.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DPSU-D211W0",
-    "name": "DA-CRADLE-POGO-REV1.0 2024.06.20 / 1.2T / White / OSP / 8Array /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 75.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DSG0-03MS00",
-    "name": "DS2_CRADLE / 1PIN POGOPIN / 3783BJ/ H10 /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.66,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 213.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DUTR-ST1250",
-    "name": "TRANS / ST-1313H-111 / 25T / SMD /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.09,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 430.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC3-475K30",
-    "name": "2012 475K/X5R/25V /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 2.04,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 12.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC2-224K10",
-    "name": "1608 224K / 50V /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.2,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 7.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-033320",
-    "name": "1005 F 33K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-030420",
-    "name": "1005 F 300K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-022320",
-    "name": "1005 F 22K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC1-051320",
-    "name": "1005 F 51K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 0.5,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC3-082220",
-    "name": "2012 F 8.2K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 2.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DGC7-0220M1",
-    "name": "22uH / HPC6045NC-220M / TAI-TECH /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 48.248,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC3-027210",
-    "name": "2012 J 2.7K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 1.2,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DGC8-0151M1",
-    "name": "150uH / HPC5040NF-151M / TAI-TECH /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 75.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC1-104K10",
-    "name": "1005 104K/50V / ANY / CL05B104KBNC /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.49,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 3.1,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DCC3-106K10",
-    "name": "2012 106K/X5R/50V - 10UF, CL21A106KBYQNNE /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1.15,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 45.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DIR0-3683S0",
-    "name": "IC  MT3683NSCR / M3Tek / SOT23_6L / ( AX3682 대치품)",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 220.0,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  },
-  {
-    "code": "DRC3-047210",
-    "name": "2012 J 4.7K /",
-    "supplier": "",
-    "stock": 0,
-    "dailyUsage": 1,
-    "leadTime": 7,
-    "safetyDays": 3,
-    "moq": 1,
-    "unitPrice": 1.7,
-    "inboundQty": 0,
-    "inboundDate": null,
-    "replacementLevel": "limited"
-  }
-];
+  { code: "EAX69587604", name: "97.5 x 97.5 x 1.6t(mm), FR4", requiredQty: 1 },
+  { code: "EAV65015705", name: "3.45x3.45x3.8t, 32.5mW@1500mA", requiredQty: 3 },
+  { code: "EAH61953801", name: "12V / SD12C", requiredQty: 4 },
+  { code: "EDTY0008601", name: "5V / SD05C", requiredQty: 1 },
+  { code: "2IP4310AATC-RG", name: "IC AS431ANTR-G1, SOT23, DIODES", requiredQty: 3 },
+  { code: "SN74HCS21PWR", name: "SN74HCS21PWR / Single 4-Input AND Gates", requiredQty: 1 },
+  { code: "0ISTLKE002A", name: "KIA78L05F 7TO20V 5V 500MW SOT89 R/TP 3P", requiredQty: 1 },
+  { code: "EBK61451301", name: "KTC4378 NPN SOT89 ST 3P KEC CORP.", requiredQty: 3 },
+  { code: "0RH5101C622", name: "R5.1KΩ, J, 1/8W, 1608", requiredQty: 3 },
+  { code: "0RH1002C622", name: "R10KΩ, J, 1/8W, 1608", requiredQty: 3 },
+  { code: "0RJ2001D477", name: "R2KΩ, F, 1/8W, 1608", requiredQty: 3 },
+  { code: "EBC64896001", name: "R40.2Ω, F, 1/8W, 3216", requiredQty: 6 },
+  { code: "EAE36617601", name: "50V 100nF X7R 1608", requiredQty: 2 },
+  { code: "EAG64892301", name: "12507WR-03 3P 1.25MM 1R ANGLE SMD REEL", requiredQty: 1 },
+  { code: "KOG2025A1", name: "7.5 x 7.5 x 14t(mm)", requiredQty: 1 },
+  { code: "KOP2023B4", name: "43.2 x 11.1 x 7.2 x 2t(mm), ABS", requiredQty: 1 },
+  { code: "KOT2020A1", name: "PACKING TRAY, PET, 330*330*17.9*0.8㎜(W*L*H*T), ANTI STATIC, CLEAR", requiredQty: 0.111111111 },
+  { code: "5PKC00583A", name: "CARTON BOX ** CORRUGATED PAPER, 356*356*282*5㎜ (W*L*H*T, 내측), KLB175/K180/KLB175", requiredQty: 0.00037 },
+  { code: "KOP2020A5", name: "PACKING PAD ** PAPER, 335*335*5㎜ (W*L*T), PROTECTION, KLB175/K180 /KLB175, RoHS,", requiredQty: 0.00073 },
+].map((item) => ({
+  ...item,
+  itemName: "에어로타워",
+  location: defaultMaterialLocations[item.code] || "",
+  supplier: "",
+  stock: 0,
+  leadTime: 0,
+  safetyStock: 0,
+  unitPrice: 0,
+  inboundQty: 0,
+  inboundDate: null,
+}));
 
 const today = new Date("2026-07-06T09:00:00+09:00");
 
 const formatNumber = new Intl.NumberFormat("ko-KR");
+const formatQuantity = new Intl.NumberFormat("ko-KR", {
+  maximumFractionDigits: 9,
+});
 const formatCurrency = new Intl.NumberFormat("ko-KR", {
   style: "currency",
   currency: "KRW",
@@ -2463,8 +61,8 @@ const materialStorageKey = "materialOps.materials";
 const purchaseOrderStorageKey = "materialOps.purchaseOrders";
 const storageKeyPrefix = "materialOps.";
 const materialDatasetVersionKey = "materialOps.materialDatasetVersion";
-const materialDatasetVersion = "20260708-ko20260707-proposal-no-supplier";
-const defaultMaterials = materials.map((item) => ({ ...item }));
+const materialDatasetVersion = "20260715-aerotower-location-v3";
+const numericMaterialFields = new Set(["stock", "safetyStock", "leadTime", "unitPrice"]);
 
 function readMaterials() {
   try {
@@ -2503,14 +101,70 @@ function clearAppStorage() {
 const savedMaterialDatasetVersion = localStorage.getItem(materialDatasetVersionKey);
 const savedMaterials = readMaterials();
 if (savedMaterialDatasetVersion !== materialDatasetVersion) {
+  clearAppStorage();
   writeMaterials(materials);
+  writePurchaseOrders([]);
   localStorage.setItem(materialDatasetVersionKey, materialDatasetVersion);
 } else if (Array.isArray(savedMaterials)) {
   materials.splice(0, materials.length, ...savedMaterials);
 }
 
+function normalizeMaterialFields(item) {
+  item.code = typeof item.code === "string" ? item.code : "";
+  item.name = typeof item.name === "string" ? item.name : "";
+  item.itemName = typeof item.itemName === "string" ? item.itemName : "";
+  item.location = typeof item.location === "string" ? item.location : "";
+  item.supplier = typeof item.supplier === "string" ? item.supplier : "";
+  item.stock = Math.max(0, Number(item.stock) || 0);
+  item.leadTime = Math.max(0, Number(item.leadTime) || 0);
+  item.unitPrice = Math.max(0, Number(item.unitPrice) || 0);
+  item.inboundQty = Math.max(0, Number(item.inboundQty) || 0);
+  item.inboundDate = typeof item.inboundDate === "string" && item.inboundDate ? item.inboundDate : null;
+  item.isMasterOnly = item.isMasterOnly === true;
+  item.isDraft = item.isDraft === true;
+  item.draftId = typeof item.draftId === "string" ? item.draftId : "";
+  item.requiredQty = Number.isFinite(Number(item.requiredQty)) ? Math.max(0, Number(item.requiredQty)) : 1;
+  if (Number.isFinite(Number(item.safetyStock))) {
+    item.safetyStock = Math.max(0, Number(item.safetyStock));
+  } else {
+    const legacyDailyUsage = Math.max(0, Number(item.dailyUsage) || 0);
+    const legacySafetyDays = Math.max(0, Number(item.safetyDays) || 0);
+    const leadTime = Math.max(0, Number(item.leadTime) || 0);
+    item.safetyStock = Math.ceil(legacyDailyUsage * (leadTime + legacySafetyDays));
+  }
+  delete item.dailyUsage;
+  delete item.safetyDays;
+  delete item.moq;
+  delete item.replacementLevel;
+
+  const isLegacyDraft = item.isMasterOnly
+    && /^NEW-\d+$/.test(item.code)
+    && item.name === "신규 자재"
+    && !item.location
+    && !item.supplier
+    && Number(item.stock) === 0
+    && Number(item.safetyStock) === 0
+    && Number(item.leadTime) === 0
+    && Number(item.unitPrice) === 0;
+  if (isLegacyDraft) {
+    item.isDraft = true;
+    item.draftId ||= `legacy-${item.code}`;
+    item.code = "";
+    item.name = "";
+  }
+  return item;
+}
+
+materials.forEach(normalizeMaterialFields);
+writeMaterials(materials);
+
 function emptyRow(colspan, message = "검색 결과가 없습니다.") {
   return `<tr><td class="empty-cell" colspan="${colspan}">${message}</td></tr>`;
+}
+
+function renderScrollRegion(container, markup, isEmpty = false) {
+  container.classList.toggle("is-empty", isEmpty);
+  container.innerHTML = markup;
 }
 
 function escapeHtml(value) {
@@ -2549,113 +203,118 @@ function getNextPurchaseOrderNo(date = new Date()) {
   return `${prefix}-${maxSequence + 1}`;
 }
 
-function diffDays(leftDate, rightDate) {
-  const msPerDay = 24 * 60 * 60 * 1000;
-  return Math.ceil((leftDate.getTime() - rightDate.getTime()) / msPerDay);
+function getStockStatus(stock, safetyStock) {
+  if (stock < safetyStock) return "critical";
+  if (safetyStock > 0 && stock < safetyStock * 1.5) return "watch";
+  return "ok";
 }
 
-function replacementLabel(level) {
-  if (level === "none") return "대체 불가";
-  if (level === "limited") return "제한 대체";
-  return "대체 쉬움";
-}
-
-function getDeliveryRiskScore(inboundDate, needDate, recommendedQty) {
-  if (!inboundDate) {
-    return recommendedQty > 0 ? 35 : 0;
-  }
-
-  const spareDays = diffDays(needDate, inboundDate);
-  if (spareDays <= 0) {
-    return 35;
-  }
-  return Math.max(0, 35 - spareDays * 7);
-}
-
-function deliveryDiffLabel(row) {
-  if (!row.inboundDate) {
-    return { label: "입고 미정", className: "late" };
-  }
-
-  const gap = diffDays(row.inboundDate, row.needDate);
-  if (gap > 0) {
-    return { label: `${gap}일 지연`, className: "late" };
-  }
-  if (gap < 0) {
-    return { label: `${Math.abs(gap)}일 여유`, className: "ready" };
-  }
-  return { label: "당일 입고", className: "late" };
+function getOpenInboundQty(item) {
+  return purchaseOrders.reduce((total, order) => {
+    const orderQty = (Array.isArray(order.rows) ? order.rows : [])
+      .filter((row) => row.code === item.code || (!row.code && row.name === item.name))
+      .reduce((sum, row) => sum + (Number(row.qty) || 0), 0);
+    return total + orderQty;
+  }, 0);
 }
 
 function getPlanBase(item) {
-  const availableDays = item.stock / item.dailyUsage;
-  const leadTimeBufferDays = availableDays - item.leadTime;
-  const targetDays = item.leadTime + item.safetyDays + 14;
-  const requiredQty = Math.max(0, Math.ceil(targetDays * item.dailyUsage - item.stock));
-  const recommendedQty = requiredQty === 0 ? 0 : Math.ceil(requiredQty / item.moq) * item.moq;
+  const stock = Math.max(0, Number(item.stock) || 0);
+  const safetyStock = Math.max(0, Number(item.safetyStock) || 0);
+  const spareQty = stock - safetyStock;
+  const shortageQty = Math.max(0, -spareQty);
+  const recordedInboundQty = Math.max(0, Number(item.inboundQty) || 0);
+  const orderedInboundQty = getOpenInboundQty(item);
+  const inboundQty = recordedInboundQty + orderedInboundQty;
+  const inboundSpareQty = stock + inboundQty - safetyStock;
+  const recommendedQty = Math.max(0, -inboundSpareQty);
   const amount = recommendedQty * item.unitPrice;
-  const latestOrderDate = addDays(today, Math.floor(availableDays - item.leadTime - item.safetyDays));
-  const orderStartDate = latestOrderDate < today ? today : latestOrderDate;
-  const expectedReceiptDate = addDays(orderStartDate, item.leadTime);
+  const expectedReceiptDate = recommendedQty > 0 ? addDays(today, item.leadTime) : null;
   const inboundDate = item.inboundDate ? new Date(`${item.inboundDate}T09:00:00+09:00`) : null;
-  const needDate = addDays(today, Math.floor(availableDays));
-  const deliveryRisk = inboundDate ? inboundDate >= needDate : recommendedQty > 0;
-  const shortageRatio = Math.max(0, (item.leadTime + item.safetyDays - availableDays) / (item.leadTime + item.safetyDays));
+  const shortageRatio = safetyStock > 0 ? Math.min(1, shortageQty / safetyStock) : 0;
   const shortageScore = shortageRatio * 45;
-  const deliveryRiskScore = getDeliveryRiskScore(inboundDate, needDate, recommendedQty);
-  const noDeliveryBuffer = expectedReceiptDate >= needDate;
-  const status = noDeliveryBuffer || availableDays <= item.leadTime
-    ? "critical"
-    : availableDays <= item.leadTime + item.safetyDays
-      ? "watch"
-      : "ok";
+  const status = getStockStatus(stock, safetyStock);
 
   return {
     ...item,
-    availableDays,
-    leadTimeBufferDays,
-    targetDays,
+    stock,
+    safetyStock,
+    spareQty,
+    shortageQty,
     recommendedQty,
     expectedReceiptDate,
     inboundDate,
-    needDate,
-    deliveryRisk,
+    recordedInboundQty,
+    orderedInboundQty,
+    inboundQty,
+    inboundSpareQty,
+    deliveryRisk: recommendedQty > 0,
     shortageScore,
-    deliveryRiskScore,
     status,
     amount,
   };
 }
 
 function buildPlans() {
-  const basePlans = materials.map(getPlanBase);
+  const materialMasters = new Map();
+  materials.forEach((item) => {
+    if (item.isDraft) return;
+    const key = item.code.trim() || item.name.trim();
+    if (!key) return;
+    if (!materialMasters.has(key)) {
+      materialMasters.set(key, { ...item, itemNames: [] });
+    }
+    const master = materialMasters.get(key);
+    if (item.itemName && !master.itemNames.includes(item.itemName)) {
+      master.itemNames.push(item.itemName);
+    }
+  });
+  const basePlans = [...materialMasters.values()].map(getPlanBase);
   const maxAmount = Math.max(...basePlans.map((row) => row.amount), 0);
+  const maxLeadTime = Math.max(...basePlans.map((row) => row.leadTime), 1);
   return basePlans.map((row) => {
     const amountImpactScore = maxAmount > 0 ? (row.amount / maxAmount) * 20 : 0;
+    const procurementRiskScore = row.shortageQty > 0 ? (row.leadTime / maxLeadTime) * 35 : 0;
     return {
       ...row,
       amountImpactScore,
-      priorityScore: Math.round(row.shortageScore + row.deliveryRiskScore + amountImpactScore),
+      procurementRiskScore,
+      priorityScore: Math.round(row.shortageScore + procurementRiskScore + amountImpactScore),
     };
   });
 }
-
-let plans = buildPlans();
 let purchaseOrders = readPurchaseOrders();
+let plans = buildPlans();
 let activeInboundSort = "priority";
 let activeInventorySort = "short";
 let activeLeadSort = "long";
-const tableSortState = {
+const productionTargets = {};
+const defaultTableSortState = {
   dashboardPlan: null,
   materials: null,
 };
+const tableSortState = structuredClone(defaultTableSortState);
+let activeViewName = null;
+
+function resetTableSortForView(viewName) {
+  const tableByView = {
+    dashboard: "dashboardPlan",
+    materials: "materials",
+  };
+  const tableName = tableByView[viewName];
+  if (!tableName) return;
+  tableSortState[tableName] = defaultTableSortState[tableName]
+    ? { ...defaultTableSortState[tableName] }
+    : null;
+}
 
 const pageMeta = {
   dashboard: ["Material Planning Console", "구매·자재 운영 현황"],
   spec: ["Material Specification", "자재명세"],
   materials: ["Material Management", "자재관리"],
+  production: ["Production Management", "생산관리"],
   planning: ["Purchase Management", "발주관리"],
-  settings: ["Master Data", "기준정보"],
+  settings: ["Material Information", "자재정보"],
   dataSettings: ["Data Settings", "설정"],
 };
 
@@ -2671,15 +330,8 @@ function statusRank(status) {
   return 2;
 }
 
-function replacementRank(level) {
-  if (level === "none") return 0;
-  if (level === "limited") return 1;
-  return 2;
-}
-
 function sortValue(row, key) {
   if (key === "status") return statusRank(row.status);
-  if (key === "replacementLevel") return replacementRank(row.replacementLevel);
   const value = row[key];
   if (value instanceof Date) return value.getTime();
   if (value === null || value === undefined || value === "") return Number.MAX_SAFE_INTEGER;
@@ -2710,37 +362,49 @@ function updateSortHeaders() {
   document.querySelectorAll("[data-sort-table]").forEach((button) => {
     const sortState = tableSortState[button.dataset.sortTable];
     const isActive = sortState?.key === button.dataset.sortKey;
+    const indicator = button.querySelector("span");
+    const directionLabel = sortState?.direction === "desc" ? "내림차순" : "오름차순";
     button.classList.toggle("is-active", isActive);
     button.setAttribute("aria-pressed", String(isActive));
+    button.title = isActive ? `현재 ${directionLabel} 정렬` : "정렬";
+    if (indicator) {
+      indicator.textContent = isActive
+        ? sortState.direction === "desc" ? "↓" : "↑"
+        : "⇅";
+    }
+    button.closest("th")?.setAttribute("aria-sort", isActive ? (sortState.direction === "desc" ? "descending" : "ascending") : "none");
   });
 }
 
-function getFilteredRows() {
+function getFilteredMaterialMasters() {
   const keyword = document.querySelector("#searchInput").value.trim().toLowerCase();
 
   return plans.filter((row) => {
-    const keywordMatched = [row.name, row.code, row.supplier].some((value) => value.toLowerCase().includes(keyword));
+    const keywordMatched = [row.itemNames?.join(" "), row.name, row.code, row.location, row.supplier]
+      .some((value) => String(value || "").toLowerCase().includes(keyword));
     return keywordMatched;
   });
 }
 
-function getFilteredMaterials() {
+function getFilteredBomEntries() {
   const keyword = document.querySelector("#searchInput").value.trim().toLowerCase();
 
   return materials
     .map((item, index) => ({ item, index }))
-    .filter(({ item }) => [item.name, item.code, item.supplier].some((value) => value.toLowerCase().includes(keyword)));
+    .filter(({ item }) => !item.isMasterOnly)
+    .filter(({ item }) => [item.itemName, item.name, item.code, item.location, item.supplier]
+      .some((value) => String(value || "").toLowerCase().includes(keyword)));
 }
 
 function renderSummary(rows) {
-  const critical = rows.filter((row) => row.leadTimeBufferDays <= 0).length;
-  const deliveryRisk = rows.filter((row) => row.leadTimeBufferDays > 0 && row.leadTimeBufferDays <= 7).length;
-  const planned = rows.filter((row) => row.leadTimeBufferDays > 7 && row.leadTimeBufferDays <= 31).length;
+  const critical = rows.filter((row) => row.status === "critical").length;
+  const watch = rows.filter((row) => row.status === "watch").length;
+  const normal = rows.filter((row) => row.status === "ok").length;
   const amount = rows.reduce((sum, row) => sum + row.amount, 0);
 
   document.querySelector("#criticalCount").textContent = `${critical}개`;
-  document.querySelector("#plannedCount").textContent = `${planned}개`;
-  document.querySelector("#deliveryRiskCount").textContent = `${deliveryRisk}개`;
+  document.querySelector("#plannedCount").textContent = `${normal}개`;
+  document.querySelector("#deliveryRiskCount").textContent = `${watch}개`;
   document.querySelector("#orderAmount").textContent = formatCurrency.format(amount);
 }
 
@@ -2769,9 +433,10 @@ function getPurchaseOrderInboundRows() {
       const plan = findPlanForOrderItem(item);
       const deliveryText = formatOrderDeliveryDate(order, item);
       const inboundDate = parseMonthDayDate(deliveryText);
-      const isAsapInbound = String(deliveryText || "").trim().toUpperCase() === "ASAP";
-      const needDate = plan?.needDate || (material ? getPlanBase(material).needDate : today);
-      const deliveryRisk = inboundDate ? inboundDate >= needDate : true;
+      const stock = Number(material?.stock) || 0;
+      const safetyStock = Number(material?.safetyStock) || 0;
+      const inboundQty = Number(item.qty) || 0;
+      const inboundSpareQty = stock + inboundQty - safetyStock;
 
       return {
         order,
@@ -2780,18 +445,18 @@ function getPurchaseOrderInboundRows() {
         name: item.name || material?.name || "-",
         code: item.code || material?.code || "-",
         supplier: material?.supplier || "",
-        inboundQty: Number(item.qty) || 0,
+        inboundQty,
         inboundDate,
         inboundDateText: inboundDate ? formatDate(inboundDate) : deliveryText,
-        isAsapInbound,
-        needDate,
-        deliveryRisk,
+        inboundSpareQty,
+        deliveryRisk: inboundSpareQty < 0,
         priorityScore: plan?.priorityScore || 0,
       };
     });
   }).filter((row) => {
     if (!keyword) return true;
-    return [row.name, row.code, row.supplier, row.order.orderNo].some((value) => String(value || "").toLowerCase().includes(keyword));
+    return [row.name, row.code, row.supplier, row.order.orderNo]
+      .some((value) => String(value || "").toLowerCase().includes(keyword));
   });
 }
 
@@ -2805,41 +470,30 @@ function renderPriority() {
       const right = b.inboundDate ? b.inboundDate.getTime() : Number.MAX_SAFE_INTEGER;
       return left - right;
     }
-    if (activeInboundSort === "need") {
-      return a.needDate.getTime() - b.needDate.getTime();
-    }
+    if (activeInboundSort === "coverage") return a.inboundSpareQty - b.inboundSpareQty;
     return b.priorityScore - a.priorityScore;
   });
 
   if (inboundRows.length === 0) {
-    list.innerHTML = `<div class="empty-state">확인할 입고 예정 품목이 없습니다.</div>`;
+    renderScrollRegion(list, `<div class="empty-state">확인할 입고 예정 품목이 없습니다.</div>`, true);
     return;
   }
 
-  list.innerHTML = inboundRows
-    .map((row) => {
-      const diff = deliveryDiffLabel(row);
-      const statusLabel = row.deliveryRisk
-        ? row.isAsapInbound
-          ? "확인 필요 · ASAP"
-          : row.inboundDate
-            ? "조정 필요"
-            : "확인 필요"
-        : "정상";
-      const needDiffLabel = row.isAsapInbound ? "ASAP" : diff.label;
-      const needDiffClass = row.isAsapInbound ? "late" : diff.className;
-      return `
-        <article class="timeline-item ${row.deliveryRisk ? "risk" : ""}">
-          <header>
-            <strong>${row.name}</strong>
-            <span class="state ${row.deliveryRisk ? "critical" : "ok"}">${statusLabel}</span>
-          </header>
-          <span>입고일 ${row.inboundDateText} · ${formatNumber.format(row.inboundQty)}개</span>
-          <span>필요일 ${formatDate(row.needDate)} · <span class="date-diff ${needDiffClass}">${needDiffLabel}</span></span>
-        </article>
-      `;
-    })
-    .join("");
+  renderScrollRegion(list, inboundRows.map((row) => {
+    const coverageLabel = row.inboundSpareQty < 0
+      ? `입고 후 부족 ${formatNumber.format(Math.abs(row.inboundSpareQty))}개`
+      : `입고 후 여유 ${formatNumber.format(row.inboundSpareQty)}개`;
+    return `
+      <article class="timeline-item ${row.deliveryRisk ? "risk" : ""}">
+        <header>
+          <strong>${escapeHtml(row.name)}</strong>
+          <span class="state ${row.deliveryRisk ? "critical" : "ok"}">${row.deliveryRisk ? "보충 부족" : "안전재고 충족"}</span>
+        </header>
+        <span>입고일 ${row.inboundDateText} · ${formatNumber.format(row.inboundQty)}개</span>
+        <span>${coverageLabel}</span>
+      </article>
+    `;
+  }).join(""));
 }
 
 function renderDashboardPlanTable(rows) {
@@ -2852,126 +506,127 @@ function renderDashboardPlanTable(rows) {
   table.innerHTML = sortTableRows("dashboardPlan", rows, (a, b) => b.priorityScore - a.priorityScore)
     .map((row) => `
       <tr>
-        <td>
-          <span class="material-name">
-            <strong>${row.name}</strong>
-            <span>${row.code}</span>
-          </span>
-        </td>
-        <td>${row.supplier}</td>
-        <td>${row.availableDays.toFixed(1)}일</td>
-        <td>${formatDate(row.needDate)}</td>
+        <td>${escapeHtml(row.code)}</td>
+        <td><span class="material-name"><strong>${escapeHtml(row.name)}</strong></span></td>
+        <td>${formatNumber.format(row.stock)}</td>
+        <td>${formatNumber.format(row.safetyStock)}</td>
+        <td class="${row.spareQty < 0 ? "shortage-value" : ""}">${row.spareQty < 0 ? "부족 " + formatNumber.format(Math.abs(row.spareQty)) : "여유 " + formatNumber.format(row.spareQty)}</td>
         <td>${row.leadTime}일</td>
-        <td>${formatDate(row.expectedReceiptDate)}</td>
         <td><span class="state ${row.status}">${statusLabel(row.status)}</span></td>
       </tr>
-    `)
-    .join("");
+    `).join("");
 }
 
 function renderMaterialsTable(rows) {
   const table = document.querySelector("#materialsTable");
   if (rows.length === 0) {
-    table.innerHTML = emptyRow(11);
+    table.innerHTML = emptyRow(6);
     return;
   }
 
   table.innerHTML = sortTableRows("materials", rows, (a, b) => a.code.localeCompare(b.code, "ko"))
     .map((row) => `
       <tr>
-        <td>${row.code}</td>
-        <td><strong>${row.name}</strong></td>
-        <td>${row.supplier}</td>
+        <td>${escapeHtml(row.code)}</td>
+        <td><span class="material-name"><strong>${escapeHtml(row.name)}</strong></span></td>
         <td>${formatNumber.format(row.stock)}</td>
-        <td>${formatNumber.format(row.dailyUsage)}</td>
-        <td>${row.availableDays.toFixed(1)}일</td>
-        <td>${formatDate(row.needDate)}</td>
-        <td>${row.leadTime}일</td>
-        <td>${formatDate(row.expectedReceiptDate)}</td>
-        <td>${replacementLabel(row.replacementLevel)}</td>
+        <td>${formatNumber.format(row.safetyStock)}</td>
+        <td class="${row.spareQty < 0 ? "shortage-value" : ""}">${row.spareQty < 0 ? "-" : "+"}${formatNumber.format(Math.abs(row.spareQty))}</td>
         <td><span class="state ${row.status}">${statusLabel(row.status)}</span></td>
       </tr>
-    `)
-    .join("");
+    `).join("");
+}
+
+function renderMaterialInfoTable(rows) {
+  const table = document.querySelector("#materialInfoTable");
+  const draftRows = materials.filter((item) => item.isDraft);
+  const tableRows = [...draftRows, ...rows];
+  if (tableRows.length === 0) {
+    table.innerHTML = emptyRow(9, "등록된 자재가 없습니다.");
+    return;
+  }
+
+  table.innerHTML = tableRows
+    .sort((a, b) => Number(b.isDraft) - Number(a.isDraft) || a.code.localeCompare(b.code, "ko"))
+    .map((row) => {
+      const identityAttribute = row.isDraft
+        ? `data-master-id="${escapeHtml(row.draftId)}"`
+        : `data-master-code="${escapeHtml(row.code)}"`;
+      const label = row.code || "신규 자재";
+      const numberValue = (value) => row.isDraft && Number(value) === 0 ? "" : value;
+      const deleteAttribute = row.isDraft
+        ? `data-delete-master-id="${escapeHtml(row.draftId)}"`
+        : `data-delete-master-code="${escapeHtml(row.code)}"`;
+      return `
+      <tr>
+        <td><input value="${escapeHtml(row.code)}" ${identityAttribute} data-master-field="code" aria-label="${escapeHtml(label)} 자재코드" /></td>
+        <td><input value="${escapeHtml(row.name)}" ${identityAttribute} data-master-field="name" aria-label="${escapeHtml(label)} 자재명" /></td>
+        <td><input value="${escapeHtml(row.location)}" ${identityAttribute} data-master-field="location" aria-label="${escapeHtml(label)} 위치" /></td>
+        <td><input value="${escapeHtml(row.supplier)}" ${identityAttribute} data-master-field="supplier" aria-label="${escapeHtml(label)} 공급사" /></td>
+        <td><input type="number" min="0" value="${numberValue(row.stock)}" ${identityAttribute} data-master-field="stock" aria-label="${escapeHtml(label)} 현재고" /></td>
+        <td><input type="number" min="0" value="${numberValue(row.safetyStock)}" ${identityAttribute} data-master-field="safetyStock" aria-label="${escapeHtml(label)} 안전재고" /></td>
+        <td><input type="number" min="0" value="${numberValue(row.leadTime)}" ${identityAttribute} data-master-field="leadTime" aria-label="${escapeHtml(label)} 리드타임" /></td>
+        <td><input type="number" min="0" step="any" value="${numberValue(row.unitPrice)}" ${identityAttribute} data-master-field="unitPrice" aria-label="${escapeHtml(label)} 단가" /></td>
+        <td><button class="danger-mini" type="button" ${deleteAttribute} aria-label="${escapeHtml(label)} 삭제">×</button></td>
+      </tr>
+    `;
+    }).join("");
 }
 
 function renderSpecTable() {
   const table = document.querySelector("#specTable");
-  const rows = getFilteredMaterials();
+  const rows = getFilteredBomEntries();
   if (rows.length === 0) {
-    table.innerHTML = emptyRow(10, "등록된 자재가 없습니다.");
+    table.innerHTML = emptyRow(5, "등록된 자재명세가 없습니다.");
     return;
   }
 
-  table.innerHTML = rows
-    .sort((a, b) => a.item.code.localeCompare(b.item.code, "ko"))
-    .map(({ item, index }) => `
+  table.innerHTML = rows.sort((a, b) => a.item.code.localeCompare(b.item.code, "ko"))
+    .map(({ item }) => `
       <tr>
-        <td><input value="${item.code}" data-spec-index="${index}" data-spec-field="code" /></td>
-        <td><input value="${item.name}" data-spec-index="${index}" data-spec-field="name" /></td>
-        <td><input value="${item.supplier}" data-spec-index="${index}" data-spec-field="supplier" /></td>
-        <td><input type="number" min="0" value="${item.stock}" data-spec-index="${index}" data-spec-field="stock" /></td>
-        <td><input type="number" min="1" value="${item.dailyUsage}" data-spec-index="${index}" data-spec-field="dailyUsage" /></td>
-        <td><input type="number" min="1" value="${item.leadTime}" data-spec-index="${index}" data-spec-field="leadTime" /></td>
-        <td><input type="number" min="1" value="${item.moq}" data-spec-index="${index}" data-spec-field="moq" /></td>
-        <td><input type="number" min="0" value="${item.unitPrice}" data-spec-index="${index}" data-spec-field="unitPrice" /></td>
-        <td>
-          <select data-spec-index="${index}" data-spec-field="replacementLevel">
-            <option value="none" ${item.replacementLevel === "none" ? "selected" : ""}>대체 불가</option>
-            <option value="limited" ${item.replacementLevel === "limited" ? "selected" : ""}>제한 대체</option>
-            <option value="easy" ${item.replacementLevel === "easy" ? "selected" : ""}>대체 쉬움</option>
-          </select>
-        </td>
-        <td>
-          <button class="icon-button danger-mini" type="button" data-delete-spec-index="${index}" aria-label="${item.name} 삭제">
-            ×
-          </button>
-        </td>
+        <td>${escapeHtml(item.itemName)}</td>
+        <td>${escapeHtml(item.code)}</td>
+        <td><span class="material-name"><strong>${escapeHtml(item.name)}</strong></span></td>
+        <td>${escapeHtml(item.location)}</td>
+        <td>${formatQuantity.format(item.requiredQty)}</td>
       </tr>
-    `)
-    .join("");
+    `).join("");
 }
 
 function renderInventoryChart(rows) {
-  const charts = document.querySelectorAll("#materialInventoryBarChart");
+  const chart = document.querySelector("#materialInventoryBarChart");
   const emptyMarkup = `<div class="empty-state">표시할 재고가 없습니다.</div>`;
 
   if (rows.length === 0) {
-    charts.forEach((chart) => {
-      chart.innerHTML = emptyMarkup;
-    });
+    renderScrollRegion(chart, emptyMarkup, true);
     return;
   }
 
-  const maxAvailableDays = Math.max(...rows.map((row) => row.availableDays), 1);
+  const maxGap = Math.max(...rows.map((row) => Math.abs(row.spareQty)), 1);
   const chartMarkup = [...rows]
-    .sort((a, b) => activeInventorySort === "long"
-      ? b.availableDays - a.availableDays
-      : a.availableDays - b.availableDays)
+    .sort((a, b) => activeInventorySort === "long" ? b.spareQty - a.spareQty : a.spareQty - b.spareQty)
     .map((row) => {
-      const ratio = Math.max(5, Math.round((row.availableDays / maxAvailableDays) * 100));
-      const fillClass = row.status === "critical" ? "low" : row.status === "watch" ? "mid" : "";
+      const ratio = Math.max(5, Math.round((Math.abs(row.spareQty) / maxGap) * 100));
+      const fillClass = row.spareQty < 0 ? "low" : row.status === "watch" ? "mid" : "";
+      const valueLabel = row.spareQty < 0
+        ? `부족 ${formatNumber.format(Math.abs(row.spareQty))}`
+        : `여유 ${formatNumber.format(row.spareQty)}`;
       return `
         <div class="bar-row" title="${escapeHtml(row.name)}">
           <span>${escapeHtml(row.code)}</span>
-          <div class="bar-track">
-            <div class="bar-fill ${fillClass}" style="width: ${ratio}%"></div>
-          </div>
-          <strong>${row.availableDays.toFixed(1)}일</strong>
+          <div class="bar-track"><div class="bar-fill ${fillClass}" style="width: ${ratio}%"></div></div>
+          <strong>${valueLabel}</strong>
         </div>
       `;
-    })
-    .join("");
+    }).join("");
 
-  charts.forEach((chart) => {
-    chart.innerHTML = chartMarkup;
-  });
+  renderScrollRegion(chart, chartMarkup);
 }
 
 function renderBarChart(rows) {
   const chart = document.querySelector("#barChart");
   if (rows.length === 0) {
-    chart.innerHTML = `<div class="empty-state">표시할 자재가 없습니다.</div>`;
+    renderScrollRegion(chart, `<div class="empty-state">표시할 자재가 없습니다.</div>`, true);
     return;
   }
 
@@ -2985,7 +640,7 @@ function renderBarChart(rows) {
       .sort((a, b) => b.leadTime - a.leadTime)
       .map((row, index) => [row.code, (index / rows.length) * 100])
   );
-  chart.innerHTML = leadTimeRows
+  renderScrollRegion(chart, leadTimeRows
     .map((row) => {
       const rankPercent = leadTimeRank.get(row.code);
       const ratio = Math.max(5, Math.round((row.leadTime / maxLeadTime) * 100));
@@ -3000,21 +655,134 @@ function renderBarChart(rows) {
         </div>
       `;
     })
-    .join("");
+    .join(""));
+}
+
+function getProductionItems() {
+  return [...new Set(materials
+    .map((item) => item.itemName.trim())
+    .filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b, "ko"));
+}
+
+function getMaxProductionQty(itemName) {
+  const bom = materials.filter((item) => item.itemName.trim() === itemName && item.requiredQty > 0);
+  if (bom.length === 0) return 0;
+  return Math.min(...bom.map((item) => {
+    const usableStock = Math.max(0, item.stock - item.safetyStock);
+    return Math.floor(usableStock / item.requiredQty);
+  }));
+}
+
+function getProductionRequirements() {
+  const requirements = new Map();
+
+  getProductionItems().forEach((itemName) => {
+    const productionQty = Math.max(0, Number(productionTargets[itemName]) || 0);
+    if (productionQty === 0) return;
+
+    materials
+      .filter((material) => material.itemName.trim() === itemName && material.requiredQty > 0)
+      .forEach((material) => {
+        const key = material.code || material.name;
+        const current = requirements.get(key) || {
+          code: material.code,
+          name: material.name,
+          stock: material.stock,
+          safetyStock: material.safetyStock,
+          usableStock: Math.max(0, material.stock - material.safetyStock),
+          required: 0,
+          items: [],
+        };
+        current.required += material.requiredQty * productionQty;
+        current.items.push({ itemName, requiredQty: material.requiredQty, productionQty });
+        requirements.set(key, current);
+      });
+  });
+
+  return [...requirements.values()]
+    .map((row) => ({
+      ...row,
+      balance: row.usableStock - row.required,
+      shortage: Math.max(0, row.required - row.usableStock),
+    }))
+    .sort((a, b) => b.shortage - a.shortage || a.code.localeCompare(b.code, "ko"));
+}
+
+function renderProductionProductList() {
+  const container = document.querySelector("#productionProductList");
+  const itemNames = getProductionItems();
+
+  if (itemNames.length === 0) {
+    container.innerHTML = `<div class="empty-state">자재명세에서 품목을 입력하면 제품이 자동으로 추가됩니다.</div>`;
+    return;
+  }
+
+  container.innerHTML = itemNames.map((itemName) => `
+    <label class="production-product-card">
+      <span>
+        <strong>${escapeHtml(itemName)}</strong>
+        <small>안전재고 제외 최대 ${formatNumber.format(getMaxProductionQty(itemName))}개 생산 가능</small>
+      </span>
+      <span class="production-quantity">
+        <input type="number" min="0" step="1" value="${productionTargets[itemName] || 0}" data-production-item="${escapeHtml(itemName)}" />
+        <em>개</em>
+      </span>
+    </label>
+  `).join("");
+}
+
+function renderProductionAnalysis() {
+  const rows = getProductionRequirements();
+  const table = document.querySelector("#productionMaterialsTable");
+  if (rows.length === 0) {
+    table.innerHTML = emptyRow(9, "제품별 생산수량을 입력하면 필요한 자재가 표시됩니다.");
+    return;
+  }
+
+  table.innerHTML = rows.map((row) => {
+    const itemNames = row.items.map((item) => item.itemName).join(", ");
+    const unitRequirements = row.items
+      .map((item) => `${item.itemName} ${formatQuantity.format(item.requiredQty)}`)
+      .join(" · ");
+    const productionQuantities = row.items
+      .map((item) => `${item.itemName} ${formatNumber.format(item.productionQty)}`)
+      .join(" · ");
+    return `
+      <tr>
+        <td>${escapeHtml(itemNames)}</td>
+        <td>${escapeHtml(row.code)}</td>
+        <td class="production-material-name">${escapeHtml(row.name)}</td>
+        <td>${escapeHtml(unitRequirements)}</td>
+        <td>${escapeHtml(productionQuantities)}</td>
+        <td>${formatQuantity.format(row.required)}</td>
+        <td>${formatQuantity.format(row.usableStock)}</td>
+        <td class="${row.balance < 0 ? "shortage-value" : row.balance > 0 ? "surplus-value" : ""}">${formatQuantity.format(row.balance)}</td>
+        <td><span class="state ${row.shortage > 0 ? "critical" : "ok"}">${row.shortage > 0 ? "부족" : "충족"}</span></td>
+      </tr>
+    `;
+  }).join("");
+}
+
+function renderProductionManagement() {
+  renderProductionProductList();
+  renderProductionAnalysis();
 }
 
 function render() {
   plans = buildPlans();
-  const rows = getFilteredRows();
+  const rows = getFilteredMaterialMasters();
 
   renderSummary(rows);
   renderPriority();
   renderDashboardPlanTable(rows);
   renderSpecTable();
   renderOrderHistory();
+  renderMaterialInfoTable(rows);
   renderMaterialsTable(rows);
   renderInventoryChart(rows);
   renderBarChart(rows);
+  renderProductionManagement();
   updateSortHeaders();
 }
 
@@ -3054,7 +822,7 @@ function savePurchaseOrder(order) {
 
 function buildJsonBackup() {
   return {
-    version: 1,
+    version: 2,
     exportedAt: new Date().toISOString(),
     materials,
     purchaseOrders,
@@ -3084,7 +852,7 @@ function applyJsonSettings(data) {
     return;
   }
 
-  materials.splice(0, materials.length, ...nextMaterials);
+  materials.splice(0, materials.length, ...nextMaterials.map(normalizeMaterialFields));
   purchaseOrders = nextOrders;
   writeMaterials(materials);
   writePurchaseOrders(purchaseOrders);
@@ -3126,7 +894,7 @@ function renderOrderHistory() {
   if (!table) return;
 
   if (purchaseOrders.length === 0) {
-    table.innerHTML = emptyRow(8, "작성된 발주가 없습니다.");
+    table.innerHTML = emptyRow(9, "작성된 발주가 없습니다.");
     return;
   }
 
@@ -3139,7 +907,7 @@ function renderOrderHistory() {
   });
 
   if (orderItems.length === 0) {
-    table.innerHTML = emptyRow(8, "작성된 발주 품목이 없습니다.");
+    table.innerHTML = emptyRow(9, "작성된 발주 품목이 없습니다.");
     return;
   }
 
@@ -3147,10 +915,10 @@ function renderOrderHistory() {
     .map(({ order, item, material }) => `
         <tr>
           <td>${order.orderNo || "-"}</td>
+          <td>${item.code || "-"}</td>
           <td>
             <span class="material-name">
               <strong>${item.name || "-"}</strong>
-              <span>${item.code || "-"}</span>
             </span>
           </td>
           <td>${material?.supplier || ""}</td>
@@ -3289,7 +1057,7 @@ function closeOrderViewer() {
 }
 
 function renderOrderPreview() {
-  const rows = getFilteredRows()
+  const rows = getFilteredMaterialMasters()
     .filter((row) => row.recommendedQty > 0)
     .sort((a, b) => b.priorityScore - a.priorityScore);
   const editor = document.querySelector("#orderEditor");
@@ -3341,7 +1109,7 @@ function renderOrderPreview() {
       </div>
 
       <div class="table-wrap">
-        <table class="po-table">
+        <table class="data-table data-table--fluid po-table">
           <thead>
             <tr>
               <th>선택</th>
@@ -3441,35 +1209,6 @@ function xmlEscape(value) {
     .replaceAll("'", "&apos;");
 }
 
-function columnName(index) {
-  let name = "";
-  let current = index;
-  while (current > 0) {
-    const mod = (current - 1) % 26;
-    name = String.fromCharCode(65 + mod) + name;
-    current = Math.floor((current - mod) / 26);
-  }
-  return name;
-}
-
-function textCell(ref, value, style = 3) {
-  if (value === null || value === undefined || value === "") return "";
-  return `<c r="${ref}" s="${style}" t="inlineStr"><is><t>${xmlEscape(value)}</t></is></c>`;
-}
-
-function numberCell(ref, value, style = 3) {
-  if (value === null || value === undefined || value === "") return "";
-  return `<c r="${ref}" s="${style}"><v>${Number(value) || 0}</v></c>`;
-}
-
-function formulaCell(ref, formula, style = 5) {
-  return `<c r="${ref}" s="${style}"><f>${xmlEscape(formula)}</f></c>`;
-}
-
-function rowXml(rowNumber, cells) {
-  return `<row r="${rowNumber}">${cells.filter(Boolean).join("")}</row>`;
-}
-
 function findTemplateFile(name) {
   return PURCHASE_ORDER_TEMPLATE_FILES.find((file) => file.name === name)?.content || "";
 }
@@ -3557,36 +1296,6 @@ function buildWorksheetXml(order) {
 
   xml = setTemplateFormulaCell(xml, "O34", "SUM(O10:O33)");
   return xml;
-}
-
-function buildStylesXml() {
-  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
-  <fonts count="3">
-    <font><sz val="10"/><name val="맑은 고딕"/></font>
-    <font><b/><sz val="16"/><name val="맑은 고딕"/></font>
-    <font><b/><sz val="10"/><name val="맑은 고딕"/></font>
-  </fonts>
-  <fills count="3">
-    <fill><patternFill patternType="none"/></fill>
-    <fill><patternFill patternType="gray125"/></fill>
-    <fill><patternFill patternType="solid"><fgColor rgb="FFEFEFEF"/><bgColor indexed="64"/></patternFill></fill>
-  </fills>
-  <borders count="2">
-    <border><left/><right/><top/><bottom/><diagonal/></border>
-    <border><left style="thin"><color rgb="FF777777"/></left><right style="thin"><color rgb="FF777777"/></right><top style="thin"><color rgb="FF777777"/></top><bottom style="thin"><color rgb="FF777777"/></bottom><diagonal/></border>
-  </borders>
-  <cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>
-  <cellXfs count="6">
-    <xf numFmtId="0" fontId="0" fillId="0" borderId="0"/>
-    <xf numFmtId="0" fontId="1" fillId="0" borderId="0" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
-    <xf numFmtId="0" fontId="2" fillId="2" borderId="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
-    <xf numFmtId="0" fontId="0" fillId="0" borderId="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
-    <xf numFmtId="0" fontId="2" fillId="2" borderId="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
-    <xf numFmtId="3" fontId="0" fillId="0" borderId="1" applyBorder="1" applyNumberFormat="1" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
-  </cellXfs>
-  <cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>
-</styleSheet>`;
 }
 
 function crc32(bytes) {
@@ -3743,63 +1452,110 @@ function showToast(message) {
   }, 2600);
 }
 
-function normalizeSpecValue(field, value) {
-  if (["stock", "dailyUsage", "leadTime", "moq", "unitPrice"].includes(field)) {
-    return Math.max(field === "stock" || field === "unitPrice" ? 0 : 1, Number(value) || 0);
+function normalizeMaterialFieldValue(field, value) {
+  if (numericMaterialFields.has(field)) {
+    return Math.max(0, Number(value) || 0);
   }
   return value.trim();
 }
 
-function updateMaterialSpec(input) {
-  const index = Number(input.dataset.specIndex);
-  const field = input.dataset.specField;
-  const item = materials[index];
-  if (!item || !field) return;
+function getMaterialRecords(code) {
+  return materials.filter((item) => item.code === code);
+}
 
-  item[field] = normalizeSpecValue(field, input.value);
+function persistMaterialChanges(message) {
   writeMaterials(materials);
   plans = buildPlans();
   render();
+  if (message) showToast(message);
 }
 
-function addMaterialSpec() {
-  const sequence = materials.length + 1;
+function updateMaterialMaster(input) {
+  const code = input.dataset.masterCode;
+  const draftId = input.dataset.masterId;
+  const field = input.dataset.masterField;
+  if ((!code && !draftId) || !field) return;
+  const value = normalizeMaterialFieldValue(field, input.value);
+  const records = draftId
+    ? materials.filter((item) => item.draftId === draftId)
+    : getMaterialRecords(code);
+  if (records.length === 0) return;
+
+  if (field === "code") {
+    if (!value) {
+      if (!draftId) {
+        showToast("자재코드는 비워둘 수 없습니다.");
+        render();
+      }
+      return;
+    }
+    if (value !== code && materials.some((item) => item.code === value)) {
+      showToast("이미 등록된 자재코드입니다.");
+      render();
+      return;
+    }
+  }
+
+  records.forEach((item) => {
+    item[field] = value;
+    if (item.isDraft && item.code && item.name) {
+      item.isDraft = false;
+      item.draftId = "";
+    }
+  });
+  persistMaterialChanges();
+}
+
+function addMaterialMaster() {
+  const draftId = `draft-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
   materials.push({
-    code: `NEW-${String(sequence).padStart(4, "0")}`,
-    name: "신규 자재",
+    itemName: "",
+    code: "",
+    name: "",
+    location: "",
+    requiredQty: 0,
     supplier: "",
     stock: 0,
-    dailyUsage: 1,
-    leadTime: 7,
-    safetyDays: 3,
-    moq: 1,
+    safetyStock: 0,
+    leadTime: 0,
     unitPrice: 0,
     inboundQty: 0,
     inboundDate: null,
-    replacementLevel: "limited",
+    isMasterOnly: true,
+    isDraft: true,
+    draftId,
   });
-  writeMaterials(materials);
-  plans = buildPlans();
-  render();
-  showToast("자재명세에 신규 자재를 추가했습니다.");
+  persistMaterialChanges();
+  const tableWrap = document.querySelector("#materialInfoTable")?.closest(".table-wrap");
+  if (tableWrap) tableWrap.scrollTop = 0;
+  document.querySelector(`[data-master-id="${draftId}"][data-master-field="code"]`)?.focus();
+  showToast("자재정보에 신규 자재를 추가했습니다.");
 }
 
-function deleteMaterialSpec(index) {
-  const item = materials[index];
-  if (!item) return;
+function deleteMaterialMaster(button) {
+  const code = button.dataset.deleteMasterCode;
+  const draftId = button.dataset.deleteMasterId;
+  const target = draftId
+    ? materials.find((item) => item.draftId === draftId)
+    : materials.find((item) => item.code === code);
+  if (!target) return;
 
-  const confirmed = window.confirm(`${item.name} 자재를 삭제할까요?`);
-  if (!confirmed) return;
+  if (!draftId) {
+    const confirmed = window.confirm(`${target.name || target.code} 자재정보와 연결된 명세를 모두 삭제할까요?`);
+    if (!confirmed) return;
+  }
 
-  materials.splice(index, 1);
-  writeMaterials(materials);
-  plans = buildPlans();
-  render();
-  showToast("자재명세에서 자재를 삭제했습니다.");
+  const remaining = materials.filter((item) => draftId ? item.draftId !== draftId : item.code !== code);
+  materials.splice(0, materials.length, ...remaining);
+  persistMaterialChanges(draftId ? "신규 자재 행을 삭제했습니다." : "자재정보를 삭제했습니다.");
 }
 
 function setActiveView(viewName) {
   const fallback = pageMeta[viewName] ? viewName : "dashboard";
+  if (activeViewName && activeViewName !== fallback) {
+    resetTableSortForView(activeViewName);
+  }
+  activeViewName = fallback;
   document.querySelectorAll("[data-view]").forEach((view) => {
     view.classList.toggle("is-active", view.dataset.view === fallback);
   });
@@ -3833,7 +1589,7 @@ window.addEventListener("popstate", () => {
 document.querySelector("#searchInput").addEventListener("input", render);
 document.querySelector("#createOrderButton").addEventListener("click", openOrderModal);
 document.querySelector("#confirmOrderButton").addEventListener("click", downloadPurchaseOrder);
-document.querySelector("#addSpecRowButton").addEventListener("click", addMaterialSpec);
+document.querySelector("#addMaterialInfoButton").addEventListener("click", addMaterialMaster);
 document.querySelector("#jsonUploadButton").addEventListener("click", () => {
   document.querySelector("#jsonUploadInput").click();
 });
@@ -3848,15 +1604,19 @@ document.querySelector("#orderHistoryTable").addEventListener("click", (event) =
   if (!button) return;
   openStoredPurchaseOrder(button.dataset.orderViewId);
 });
-document.querySelector("#specTable").addEventListener("click", (event) => {
-  const button = event.target.closest("[data-delete-spec-index]");
-  if (!button) return;
-  deleteMaterialSpec(Number(button.dataset.deleteSpecIndex));
-});
-document.querySelector("#specTable").addEventListener("change", (event) => {
-  if (event.target.matches("[data-spec-field]")) {
-    updateMaterialSpec(event.target);
+document.querySelector("#materialInfoTable").addEventListener("change", (event) => {
+  if (event.target.matches("[data-master-field]")) {
+    updateMaterialMaster(event.target);
   }
+});
+document.querySelector("#materialInfoTable").addEventListener("click", (event) => {
+  const button = event.target.closest("[data-delete-master-code], [data-delete-master-id]");
+  if (button) deleteMaterialMaster(button);
+});
+document.querySelector("#productionProductList").addEventListener("input", (event) => {
+  if (!event.target.matches("[data-production-item]")) return;
+  productionTargets[event.target.dataset.productionItem] = Math.max(0, Number(event.target.value) || 0);
+  renderProductionAnalysis();
 });
 document.querySelector("#orderEditor").addEventListener("input", (event) => {
   if (event.target.matches('[data-po-field="qty"], [data-po-field="unitPrice"]')) {

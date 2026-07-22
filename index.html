@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>구매자재관리</title>
-    <link rel="stylesheet" href="./styles.css?v=20260708-chart-code-labels" />
+    <link rel="stylesheet" href="./styles.css?v=20260715-material-draft-delete-v15" />
   </head>
   <body>
     <aside class="sidebar" aria-label="주 메뉴">
@@ -18,35 +18,39 @@
 
       <nav class="nav">
         <a class="active" href="#dashboard" data-view-target="dashboard" aria-current="page">
-          <span class="nav-icon">⌂</span>
+          <span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></span>
           대시보드
         </a>
+        <a href="#settings" data-view-target="settings">
+          <span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7"/></svg></span>
+          자재정보
+        </a>
         <a href="#spec" data-view-target="spec">
-          <span class="nav-icon">▤</span>
+          <span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></span>
           자재명세
         </a>
         <a href="#materials" data-view-target="materials">
-          <span class="nav-icon">□</span>
+          <span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 7 8-4 8 4-8 4-8-4Z"/><path d="m4 7 8 4 8-4v10l-8 4-8-4V7Z"/><path d="M12 11v10"/></svg></span>
           자재관리
         </a>
+        <a href="#production" data-view-target="production">
+          <span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V9l6 3V9l6 3V5h4v16H3Z"/><path d="M7 17h2M12 17h2M17 17h2"/></svg></span>
+          생산관리
+        </a>
         <a href="#planning" data-view-target="planning">
-          <span class="nav-icon">↻</span>
+          <span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v17H5z"/><path d="M9 2v4M15 2v4M8 10h8M8 14h5"/><path d="m14 18 2 2 4-4"/></svg></span>
           발주관리
         </a>
-        <a href="#settings" data-view-target="settings">
-          <span class="nav-icon">◇</span>
-          기준정보
-        </a>
         <a href="#dataSettings" data-view-target="dataSettings">
-          <span class="nav-icon">⚙</span>
+          <span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3V2.8h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"/></svg></span>
           설정
         </a>
       </nav>
 
       <section class="side-panel" aria-label="운영 기준">
-        <p>자동 발주 기준</p>
-        <strong>가용일수 ≤ 리드타임 + 안전일수</strong>
-        <span>관리우선도는 재고부족도, 납기위험도, 금액영향도를 합산합니다.</span>
+        <p>발주 검토 기준</p>
+        <strong>안전재고 기준</strong>
+        <span>현재고와 안전재고의 차이로 부족, 주의, 정상 자재를 구분합니다.</span>
       </section>
     </aside>
 
@@ -68,24 +72,24 @@
       <section class="view is-active" id="dashboard" data-view="dashboard">
         <section class="summary-grid" aria-label="요약 정보">
           <article class="metric critical">
-            <span>즉시 발주 필요</span>
+            <span>안전재고 부족</span>
             <strong id="criticalCount">0</strong>
-            <p>가용일수가 리드타임 이하인 품목</p>
+            <p>현재고가 안전재고보다 적은 자재</p>
           </article>
           <article class="metric warning">
-            <span>리드타임 임박</span>
+            <span>재고 주의</span>
             <strong id="deliveryRiskCount">0</strong>
-            <p>리드타임 여유가 1~7일인 품목</p>
+            <p>현재고가 안전재고의 1.5배 미만인 자재</p>
           </article>
           <article class="metric success">
-            <span>발주 검토 대상</span>
+            <span>재고 정상</span>
             <strong id="plannedCount">0</strong>
-            <p>리드타임 여유가 8~31일인 품목</p>
+            <p>안전재고의 1.5배 이상 확보한 자재</p>
           </article>
           <article class="metric">
             <span>예상 발주 금액</span>
             <strong id="orderAmount">0</strong>
-            <p>자동 계획 기준 합산 금액</p>
+            <p>안전재고 부족분 보충 기준 합산 금액</p>
           </article>
         </section>
 
@@ -99,13 +103,13 @@
               <div class="segmented" role="tablist" aria-label="입고 예정 정렬">
                 <button class="active" type="button" data-inbound-sort="priority">중요도</button>
                 <button type="button" data-inbound-sort="inbound">입고일</button>
-                <button type="button" data-inbound-sort="need">필요일</button>
+                <button type="button" data-inbound-sort="coverage">입고 후 재고</button>
               </div>
             </div>
-            <div class="priority-list" id="priorityList"></div>
+            <div class="priority-list panel-scroll-region" id="priorityList"></div>
           </section>
 
-          <section class="panel dashboard-plan-panel" aria-labelledby="dashboardPlanTitle">
+          <section class="panel table-panel dashboard-plan-panel" aria-labelledby="dashboardPlanTitle">
             <div class="panel-heading">
               <div>
                 <p class="eyebrow">Priority Overview</p>
@@ -114,15 +118,19 @@
             </div>
 
             <div class="table-wrap">
-              <table>
+              <table class="data-table data-table--dashboard">
+                <colgroup>
+                  <col><col class="col-material"><col>
+                  <col><col><col><col>
+                </colgroup>
                 <thead>
                   <tr>
+                    <th><button class="sort-header" type="button" data-sort-table="dashboardPlan" data-sort-key="code">자재코드 <span>⇅</span></button></th>
                     <th><button class="sort-header" type="button" data-sort-table="dashboardPlan" data-sort-key="name">자재 <span>⇅</span></button></th>
-                    <th><button class="sort-header" type="button" data-sort-table="dashboardPlan" data-sort-key="supplier">공급사 <span>⇅</span></button></th>
-                    <th><button class="sort-header" type="button" data-sort-table="dashboardPlan" data-sort-key="availableDays">가용일수 <span>⇅</span></button></th>
-                    <th><button class="sort-header" type="button" data-sort-table="dashboardPlan" data-sort-key="needDate">필요일 <span>⇅</span></button></th>
+                    <th><button class="sort-header" type="button" data-sort-table="dashboardPlan" data-sort-key="stock">현재고 <span>⇅</span></button></th>
+                    <th><button class="sort-header" type="button" data-sort-table="dashboardPlan" data-sort-key="safetyStock">안전재고 <span>⇅</span></button></th>
+                    <th><button class="sort-header" type="button" data-sort-table="dashboardPlan" data-sort-key="spareQty">여유수량 <span>⇅</span></button></th>
                     <th><button class="sort-header" type="button" data-sort-table="dashboardPlan" data-sort-key="leadTime">리드타임 <span>⇅</span></button></th>
-                    <th><button class="sort-header" type="button" data-sort-table="dashboardPlan" data-sort-key="expectedReceiptDate">예상입고일 <span>⇅</span></button></th>
                     <th><button class="sort-header" type="button" data-sort-table="dashboardPlan" data-sort-key="status">상태 <span>⇅</span></button></th>
                   </tr>
                 </thead>
@@ -134,29 +142,27 @@
       </section>
 
       <section class="view" id="spec" data-view="spec">
-        <section class="panel" aria-labelledby="specTitle">
+        <section class="panel table-panel" aria-labelledby="specTitle">
           <div class="panel-heading">
             <div>
               <p class="eyebrow">Material Specification</p>
               <h2 id="specTitle">자재명세</h2>
             </div>
-            <button class="primary-button" id="addSpecRowButton" type="button">자재 추가</button>
           </div>
 
           <div class="table-wrap">
-            <table class="spec-table">
+            <table class="data-table spec-table">
+              <colgroup>
+                <col><col><col class="col-material">
+                <col><col>
+              </colgroup>
               <thead>
                 <tr>
+                  <th>품목</th>
                   <th>자재코드</th>
                   <th>자재명</th>
-                  <th>공급사</th>
-                  <th>현재고</th>
-                  <th>일사용량</th>
-                  <th>리드타임</th>
-                  <th>MOQ</th>
-                  <th>단가</th>
-                  <th>대체가능성</th>
-                  <th>관리</th>
+                  <th>위치</th>
+                  <th>소요량</th>
                 </tr>
               </thead>
               <tbody id="specTable"></tbody>
@@ -172,14 +178,14 @@
               <div class="panel-heading">
                 <div>
                   <p class="eyebrow">Inventory Signal</p>
-                  <h2 id="materialInventorySignalTitle">재고 가용일수 현황</h2>
+                  <h2 id="materialInventorySignalTitle">재고 여유수량 현황</h2>
                 </div>
-                <div class="segmented" role="tablist" aria-label="재고 가용일수 정렬">
-                  <button class="active" type="button" data-inventory-sort="short">짧은 순</button>
-                  <button type="button" data-inventory-sort="long">긴 순</button>
+                <div class="segmented" role="tablist" aria-label="재고 여유수량 정렬">
+                  <button class="active" type="button" data-inventory-sort="short">부족 순</button>
+                  <button type="button" data-inventory-sort="long">여유 순</button>
                 </div>
               </div>
-              <div class="bar-chart" id="materialInventoryBarChart" aria-label="자재별 가용일수 차트"></div>
+              <div class="bar-chart panel-scroll-region" id="materialInventoryBarChart" aria-label="자재별 여유수량 차트"></div>
             </section>
 
             <section class="panel" aria-labelledby="materialsTitle">
@@ -190,14 +196,14 @@
                 </div>
                 <div class="segmented" role="tablist" aria-label="자재 리드타임 정렬">
                   <button class="active" type="button" data-lead-sort="long">긴 순</button>
-                  <button type="button" data-lead-sort="short">짧은 순</button>
+                  <button type="button" data-lead-sort="short">부족 순</button>
                 </div>
               </div>
-              <div class="bar-chart" id="barChart" aria-label="자재별 리드타임 차트"></div>
+              <div class="bar-chart panel-scroll-region" id="barChart" aria-label="자재별 리드타임 차트"></div>
             </section>
           </section>
 
-          <section class="panel" aria-labelledby="materialsTableTitle">
+          <section class="panel table-panel" aria-labelledby="materialsTableTitle">
             <div class="panel-heading">
               <div>
                 <p class="eyebrow">Material Master</p>
@@ -205,19 +211,18 @@
               </div>
             </div>
             <div class="table-wrap">
-              <table class="material-master-table">
+              <table class="data-table material-master-table">
+                <colgroup>
+                  <col><col class="col-material"><col>
+                  <col><col><col>
+                </colgroup>
                 <thead>
                   <tr>
                     <th><button class="sort-header" type="button" data-sort-table="materials" data-sort-key="code">자재코드 <span>⇅</span></button></th>
                     <th><button class="sort-header" type="button" data-sort-table="materials" data-sort-key="name">자재 <span>⇅</span></button></th>
-                    <th><button class="sort-header" type="button" data-sort-table="materials" data-sort-key="supplier">공급사 <span>⇅</span></button></th>
                     <th><button class="sort-header" type="button" data-sort-table="materials" data-sort-key="stock">현재고 <span>⇅</span></button></th>
-                    <th><button class="sort-header" type="button" data-sort-table="materials" data-sort-key="dailyUsage">일사용량 <span>⇅</span></button></th>
-                    <th><button class="sort-header" type="button" data-sort-table="materials" data-sort-key="availableDays">가용일수 <span>⇅</span></button></th>
-                    <th><button class="sort-header" type="button" data-sort-table="materials" data-sort-key="needDate">필요일 <span>⇅</span></button></th>
-                    <th><button class="sort-header" type="button" data-sort-table="materials" data-sort-key="leadTime">리드타임 <span>⇅</span></button></th>
-                    <th><button class="sort-header" type="button" data-sort-table="materials" data-sort-key="expectedReceiptDate">예상입고일 <span>⇅</span></button></th>
-                    <th><button class="sort-header" type="button" data-sort-table="materials" data-sort-key="replacementLevel">대체가능성 <span>⇅</span></button></th>
+                    <th><button class="sort-header" type="button" data-sort-table="materials" data-sort-key="safetyStock">안전재고 <span>⇅</span></button></th>
+                    <th><button class="sort-header" type="button" data-sort-table="materials" data-sort-key="spareQty">여유수량 <span>⇅</span></button></th>
                     <th><button class="sort-header" type="button" data-sort-table="materials" data-sort-key="status">관리상태 <span>⇅</span></button></th>
                   </tr>
                 </thead>
@@ -228,9 +233,55 @@
         </section>
       </section>
 
+      <section class="view" id="production" data-view="production">
+        <section class="workspace single-column">
+          <section class="panel" aria-labelledby="productionTitle">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">BOM Production Planning</p>
+                <h2 id="productionTitle">제품별 생산계획</h2>
+              </div>
+            </div>
+            <div class="production-product-list" id="productionProductList"></div>
+          </section>
+
+          <section class="panel table-panel" aria-labelledby="productionAnalysisTitle">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Material Requirements</p>
+                <h2 id="productionAnalysisTitle">생산 소요 자재</h2>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table production-table">
+                <colgroup>
+                  <col><col><col class="col-material">
+                  <col><col><col>
+                  <col><col><col>
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>품목</th>
+                    <th>자재코드</th>
+                    <th>자재명</th>
+                    <th>단위 소요량</th>
+                    <th>생산수량</th>
+                    <th>필요수량</th>
+                    <th>사용가능재고</th>
+                    <th>부족수량</th>
+                    <th>충족상태</th>
+                  </tr>
+                </thead>
+                <tbody id="productionMaterialsTable"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+      </section>
+
       <section class="view" id="planning" data-view="planning">
         <section class="workspace single-column">
-          <section class="panel order-history-panel" aria-labelledby="orderHistoryTitle">
+          <section class="panel table-panel order-history-panel" aria-labelledby="orderHistoryTitle">
             <div class="panel-heading">
               <div>
                 <p class="eyebrow">Purchase Orders</p>
@@ -239,10 +290,16 @@
             </div>
 
             <div class="table-wrap">
-              <table class="order-history-table">
+              <table class="data-table order-history-table">
+                <colgroup>
+                  <col><col><col class="col-material">
+                  <col><col><col>
+                  <col><col><col>
+                </colgroup>
                 <thead>
                   <tr>
                     <th>일련번호</th>
+                    <th>자재코드</th>
                     <th>자재</th>
                     <th>공급사</th>
                     <th>발주수량</th>
@@ -261,25 +318,27 @@
       </section>
 
       <section class="view" id="settings" data-view="settings">
-        <section class="settings-grid">
-          <article class="panel setting-card">
-            <p class="eyebrow">Planning Rule</p>
-            <h2>자동 발주 기준</h2>
-            <strong>가용일수 ≤ 리드타임 + 안전일수</strong>
-            <span>안전일수와 최소 발주량을 기준으로 추천 발주량을 산출합니다.</span>
-          </article>
-          <article class="panel setting-card">
-            <p class="eyebrow">Priority Rule</p>
-            <h2>관리우선도</h2>
-            <strong>재고부족도 45 + 납기위험도 35 + 금액영향도 20</strong>
-            <span>금액영향도는 품목별 예상 발주금액을 최대 예상 발주금액과 비교해 0~20점으로 산정합니다.</span>
-          </article>
-          <article class="panel setting-card">
-            <p class="eyebrow">Data Standard</p>
-            <h2>기준 데이터</h2>
-            <strong>자재, 공급사, 리드타임, MOQ, 단가, 대체가능성</strong>
-            <span>현재 화면은 개선제안서 원본데이터 기준으로 동작합니다.</span>
-          </article>
+        <section class="panel table-panel" aria-labelledby="materialInfoTitle">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Material Information</p>
+              <h2 id="materialInfoTitle">자재정보</h2>
+            </div>
+            <button class="primary-button" id="addMaterialInfoButton" type="button">자재 추가</button>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table material-info-table">
+              <colgroup>
+                <col><col class="col-material"><col><col>
+                <col><col><col><col><col>
+              </colgroup>
+              <thead><tr>
+                <th>자재코드</th><th>자재명</th><th>위치</th><th>공급사</th><th>현재고</th>
+                <th>안전재고</th><th>리드타임</th><th>단가</th><th>관리</th>
+              </tr></thead>
+              <tbody id="materialInfoTable"></tbody>
+            </table>
+          </div>
         </section>
       </section>
 
@@ -309,6 +368,31 @@
               <span>저장된 자재명세와 발주 목록을 모두 삭제합니다.</span>
               <button class="danger-button" id="resetDataButton" type="button">초기화</button>
             </article>
+          </div>
+        </section>
+        <section class="panel operating-rules" aria-labelledby="operatingRulesTitle">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Operating Rules</p>
+              <h2 id="operatingRulesTitle">운영 기준</h2>
+            </div>
+          </div>
+          <div class="settings-grid">
+          <article class="rule-card setting-card">
+            <p class="eyebrow">Data Standard</p><h2>기준 데이터</h2>
+            <strong>품목, 자재, 소요량, 현재고, 안전재고, 공급사, 리드타임, 단가</strong>
+            <span>자재정보와 자재명세에 저장된 데이터를 기준으로 동작합니다.</span>
+          </article>
+          <article class="rule-card setting-card">
+            <p class="eyebrow">Priority Rule</p><h2>관리우선도</h2>
+            <strong>안전재고 부족도 45 + 조달위험도 35 + 금액영향도 20</strong>
+            <span>금액영향도는 예상 발주금액을 최대 예상 발주금액과 비교해 산정합니다.</span>
+          </article>
+          <article class="rule-card setting-card">
+            <p class="eyebrow">Review Rule</p><h2>재고 상태 기준</h2>
+            <strong>부족 : 현재고 &lt; 안전재고<br>주의 : 안전재고 ≤ 현재고 &lt; 안전재고 × 1.5<br>정상 : 현재고 ≥ 안전재고 × 1.5</strong>
+            <span>현재고에서 안전재고를 뺀 여유수량을 기준으로 판단합니다.</span>
+          </article>
           </div>
         </section>
       </section>
@@ -357,6 +441,6 @@
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script src="./po-template.js?v=20260707-template"></script>
-    <script src="./app.js?v=20260708-chart-code-labels"></script>
+    <script src="./app.js?v=20260715-material-draft-delete-v15"></script>
   </body>
 </html>
